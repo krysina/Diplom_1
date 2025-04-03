@@ -15,15 +15,13 @@ public class IngredientTest {
     private final static RandomStringUtils randomStringUtils = new RandomStringUtils();
     private final static Random random = new Random();
     private Ingredient ingredient;
-    private final IngredientType ingredientType;
-    private final String name;
-    private final float price;
 
-    public IngredientTest(IngredientType ingredientType, String name, float price) {
-        this.ingredientType = ingredientType;
-        this.name = name;
-        this.price = price;
-    }
+    @Parameterized.Parameter(0)
+    public IngredientType ingredientType;
+    @Parameterized.Parameter(1)
+    public String name;
+    @Parameterized.Parameter(2)
+    public float price;
 
     @Before
     public void setUp() {
@@ -31,7 +29,7 @@ public class IngredientTest {
     }
 
     @Parameterized.Parameters
-    public static Object[][] createIngredient() {
+    public static Object[][] dataIngredients() {
         return new Object[][]{
                 {IngredientType.FILLING, randomStringUtils.randomAlphabetic(11), random.nextFloat()},
                 {IngredientType.SAUCE, randomStringUtils.randomAlphabetic(11), random.nextFloat()}
